@@ -1,11 +1,20 @@
-const express = require('express')
-const morgan = require('morgan')
+import express from 'express'
+import morgan from 'morgan'
+import eventRouter from './src/router/eventsRouter.js'
+import connectDB from './src/configs/database.js'
+
 const app = express()
 
+app.use(express.json())
 app.use(morgan('dev'))
 
 app.listen(3000, () => {
-    console.log('servidor en escucha')
+    try {
+        connectDB()
+        console.log('servidor en escucha')
+    } catch (error) {
+        
+    }
 })
 
-app.use('/api', require('./src/router/eventsRouter'))
+app.use('/api', eventRouter)

@@ -1,16 +1,7 @@
-const e = require('express')
-const {Router} = require('express')
+import { Router } from 'express'
+import { faceRecognitionController } from '../controller/faceRecognitionController.js'
 const router = Router()
-const hikvision = require('node-hikvision-api')
 
-router.get('/event', (req, res)=> {
-    
-    const evento = req.body
+router.post('/event', faceRecognitionController)
 
-    console.log(evento)
-
-    res.send(evento)
-
-})
-
-module.exports = router
+export default router
